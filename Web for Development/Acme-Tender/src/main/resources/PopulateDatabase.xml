@@ -1,0 +1,1741 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- * PopulateDatabase.xml * * Copyright (C) 2017 Universidad de Sevilla 
+	* * The use of this project is hereby constrained to the conditions of the 
+	* TDG Licence, a copy of which you may download from * http://www.tdg-seville.info/License.html -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+                http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        ">
+
+	<!-- Formato de las dates -->
+	<bean id="dateFormat" class="java.text.SimpleDateFormat">
+		<constructor-arg value="dd/MM/yyyy" />
+	</bean>
+
+	<!-- User accounts -->
+
+	<!-- admin user account -->
+
+	<bean id="userAccountAdmin" class="security.UserAccount">
+		<property name="username" value="admin" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+		<property name="active" value="true" />
+	</bean>
+
+	<!-- commercial user accounts -->
+
+	<bean id="userAccountCommercial1" class="security.UserAccount">
+		<property name="username" value="commercial1" />
+		<property name="password" value="552a42b69b329bf60d96e1cb6aa5e321" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="COMMERCIAL" />
+				</bean>
+			</list>
+		</property>
+		<property name="active" value="true" />
+	</bean>
+
+	<bean id="userAccountCommercial2" class="security.UserAccount">
+		<property name="username" value="commercial2" />
+		<property name="password" value="04c62ae304ba5a5df7d9703e5d3b483e" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="COMMERCIAL" />
+				</bean>
+			</list>
+		</property>
+		<property name="active" value="true" />
+	</bean>
+
+	<!-- administrative user accounts -->
+
+	<bean id="userAccountAdministrative1" class="security.UserAccount">
+		<property name="username" value="administrative1" />
+		<property name="password" value="aa17fad59d280deacf4b6f0d45581de7" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMINISTRATIVE" />
+				</bean>
+			</list>
+		</property>
+		<property name="active" value="true" />
+	</bean>
+
+	<bean id="userAccountAdministrative2" class="security.UserAccount">
+		<property name="username" value="administrative2" />
+		<property name="password" value="56ce1a94049346e1ca6368b396133947" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMINISTRATIVE" />
+				</bean>
+			</list>
+		</property>
+		<property name="active" value="true" />
+	</bean>
+
+	<!-- executive user accounts -->
+
+	<bean id="userAccountExecutive1" class="security.UserAccount">
+		<property name="username" value="executive1" />
+		<property name="password" value="b804c0235d5eb7dd378c3ae7aa1f074b" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="EXECUTIVE" />
+				</bean>
+			</list>
+		</property>
+		<property name="active" value="true" />
+	</bean>
+
+	<bean id="userAccountExecutive2" class="security.UserAccount">
+		<property name="username" value="executive2" />
+		<property name="password" value="aea786f6da85c8b9cbdc3eb5a1226df5" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="EXECUTIVE" />
+				</bean>
+			</list>
+		</property>
+		<property name="active" value="true" />
+	</bean>
+	
+	<bean id="userAccountExecutive3" class="security.UserAccount">
+		<property name="username" value="executive3" />
+		<property name="password" value="85885aa2bac6fd2d05033e34854713c2" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="EXECUTIVE" />
+				</bean>
+			</list>
+		</property>
+		<property name="active" value="false" />
+	</bean>
+
+	<!-- Administrator -->
+
+	<bean id="administrator" class="domain.Administrator">
+		<property name="name" value="Administrador" />
+		<property name="surname" value="Del sistema" />
+		<property name="address" value="Acme Tender." />
+		<property name="phone" value="658357522" />
+		<property name="email" value="admin@acme.com" />
+		<property name="userAccount" ref="userAccountAdmin" />
+
+		<property name="folders">
+			<list>
+				<ref bean="outbox1" />
+				<ref bean="inbox1" />
+				<ref bean="notificationbox1" />
+				<ref bean="trashbox1" />
+				<ref bean="spambox1" />
+			</list>
+		</property>
+
+
+	</bean>
+
+	<!-- Commercials -->
+
+	<bean id="commercial1" class="domain.Commercial">
+		<property name="name" value="Juan" />
+		<property name="surname" value="Domínguez" />
+		<property name="address" value="C/ Alcalá 05" />
+		<property name="phone" value="646474848" />
+		<property name="email" value="j-dominguez@gmail.com" />
+		<property name="userAccount" ref="userAccountCommercial1" />
+
+		<property name="folders">
+			<list>
+				<ref bean="outbox2" />
+				<ref bean="inbox2" />
+				<ref bean="notificationbox2" />
+				<ref bean="trashbox2" />
+				<ref bean="spambox2" />
+			</list>
+		</property>
+
+
+	</bean>
+
+	<bean id="commercial2" class="domain.Commercial">
+		<property name="name" value="Ana" />
+		<property name="surname" value="Romero" />
+		<property name="address" value="C/ Feria 75" />
+		<property name="phone" value="666999888" />
+		<property name="email" value="ana@gmail.com" />	
+		<property name="userAccount" ref="userAccountCommercial2" />
+
+		<property name="folders">
+			<list>
+				<ref bean="outbox3" />
+				<ref bean="inbox3" />
+				<ref bean="notificationbox3" />
+				<ref bean="trashbox3" />
+				<ref bean="spambox3" />
+			</list>
+		</property>
+
+
+	</bean>
+
+	<!-- Administratives -->
+
+	<bean id="administrative1" class="domain.Administrative">
+		<property name="name" value="Jorge" />
+		<property name="surname" value="Martínez" />
+		<property name="address" value="C/ Guadaira 08" />
+		<property name="phone" value="635442441" />
+		<property name="email" value="martinez@gmail.com" />
+		<property name="userAccount" ref="userAccountAdministrative1" />
+
+		<property name="folders">
+			<list>
+				<ref bean="outbox4" />
+				<ref bean="inbox4" />
+				<ref bean="notificationbox4" />
+				<ref bean="trashbox4" />
+				<ref bean="spambox4" />
+				<ref bean="custombox4" />
+			</list>
+		</property>
+
+
+	</bean>
+
+	<bean id="administrative2" class="domain.Administrative">
+		<property name="name" value="Rosa" />
+		<property name="surname" value="López" />
+		<property name="address" value="C/ Reina Mercedes 07" />
+		<property name="phone" value="646773773" />
+		<property name="email" value="rosita@gmail.com" />
+		<property name="userAccount" ref="userAccountAdministrative2" />
+
+		<property name="folders">
+			<list>
+				<ref bean="outbox5" />
+				<ref bean="inbox5" />
+				<ref bean="notificationbox5" />
+				<ref bean="trashbox5" />
+				<ref bean="spambox5" />
+			</list>
+		</property>
+
+
+	</bean>
+
+	<!-- Executives -->
+
+	<bean id="executive1" class="domain.Executive">
+		<property name="name" value="Laura" />
+		<property name="surname" value="Fernández" />
+		<property name="address" value="C/ Arunda 18" />
+		<property name="phone" value="644332818" />
+		<property name="email" value="laufer@gmail.com" />
+		<property name="userAccount" ref="userAccountExecutive1" />
+		<property name="folders">
+			<list>
+				<ref bean="outbox6" />
+				<ref bean="inbox6" />
+				<ref bean="notificationbox6" />
+				<ref bean="trashbox6" />
+				<ref bean="spambox6" />
+				<ref bean="custombox6" />
+			</list>
+		</property>
+
+
+	</bean>
+
+	<bean id="executive2" class="domain.Executive">
+		<property name="name" value="Marta" />
+		<property name="surname" value="González" />
+		<property name="address" value="Avda Italia 18" />
+		<property name="phone" value="655555555" />
+		<property name="email" value="marta@gmail.com" />
+		<property name="userAccount" ref="userAccountExecutive2" />
+
+		<property name="folders">
+			<list>
+				<ref bean="outbox7" />
+				<ref bean="inbox7" />
+				<ref bean="notificationbox7" />
+				<ref bean="trashbox7" />
+				<ref bean="spambox7" />
+			</list>
+		</property>
+
+
+	</bean>
+	
+	<bean id="executive3" class="domain.Executive">
+		<property name="name" value="Amparo" />
+		<property name="surname" value="Ronda" />
+		<property name="address" value="Avda Castilla 38" />
+		<property name="phone" value="654456654" />
+		<property name="email" value="amparo@gmail.com" />
+		<property name="userAccount" ref="userAccountExecutive3" />
+
+		<property name="folders">
+			<list>
+				<ref bean="outbox8" />
+				<ref bean="inbox8" />
+				<ref bean="notificationbox8" />
+				<ref bean="trashbox8" />
+				<ref bean="spambox8" />
+			</list>
+		</property>
+
+
+	</bean>
+
+	<!-- Tenders -->
+
+	<bean id="tender1" class="domain.Tender">
+		<property name="reference" value="15052018-AF" />
+		<property name="title" value="Creación de portal web de la Junta de Andalucía" />
+		<property name="expedient" value="216489-2018" />
+		<property name="estimatedAmount" value="40000" />
+		<property name="organism" value="Junta de Andalucía" />
+		<property name="bulletin" value="BOJA 450/2018" />
+		<property name="bulletinDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/01/2018" />
+			</bean>
+		</property>
+		<property name="openingDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/04/2018" />
+			</bean>
+		</property>
+		<property name="maxPresentationDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/09/2018" />
+			</bean>
+		</property>
+		<property name="executionTime" value="90" />
+		<property name="observations" value="Creación de portal web institucional de la Junta de Andalucía." />
+		<property name="informationPage" value="http://www.juntadeandalucia.es/index.html" />
+		<property name="interest" value="MEDIUM" />
+		<property name="interestComment" value="Creo que es un proyecto interesante en el que tenemos opciones." />
+		<property name="administrative" ref="administrative1" />
+		<property name="category" ref="category2" />
+		<property name="offer" ref="offer1" />
+	</bean>
+
+	<bean id="tender2" class="domain.Tender">
+		<property name="reference" value="04052018-TE" />
+		<property name="title" value="Servicio de soporte técnico informático del Servicio Andaluz de Salud" />
+		<property name="expedient" value="789S/1223" />
+		<property name="estimatedAmount" value="35000" />
+		<property name="organism" value="Servicio Andaluz de Salud" />
+		<property name="bulletin" value="BOE 223/2018" />
+		<property name="bulletinDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/01/2018" />
+			</bean>
+		</property>
+		<property name="openingDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/02/2018" />
+			</bean>
+		</property>
+		<property name="maxPresentationDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/10/2018" />
+			</bean>
+		</property>
+		<property name="executionTime" value="76" />
+		<property name="observations" value="tender2-observations" />
+		<property name="informationPage" value="http://www.juntadeandalucia.es/index.html" />
+		<property name="interest" value="UNDEFINED" />
+		<property name="interestComment" value="Creo que nos hemos presentado previamente a concursos similares." />
+		<property name="administrative" ref="administrative2" />
+		<property name="category" ref="category3" />
+		<property name="offer" ref="offer2" />
+		<property name="tenderResult" ref="tenderresult2" />
+	</bean>
+
+	<bean id="tender3" class="domain.Tender">
+		<property name="reference" value="26122017-JW" />
+		<property name="title" value="Servicio de comedor de la Escuela Técnica de Informática de Sevilla" />
+		<property name="expedient" value="122/3243" />
+		<property name="estimatedAmount" value="19000" />
+		<property name="organism" value="Universidad de Sevilla" />
+		<property name="bulletin" value="BOUS 333/22312" />
+		<property name="bulletinDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/02/2018" />
+			</bean>
+		</property>
+		<property name="openingDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/03/2018" />
+			</bean>
+		</property>
+		<property name="maxPresentationDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="20/03/2018" />
+			</bean>
+		</property>
+		<property name="executionTime" value="365" />
+		<property name="observations" value="" />
+		<property name="informationPage" value="http://www.juntadeandalucia.es/index.html" />
+		<property name="interest" value="UNDEFINED" />
+		<property name="interestComment" value="No se asocia a los servicios de la empresa." />
+		<property name="administrative" ref="administrative1" />
+		<property name="category" ref="category5" />
+		<property name="offer" ref="offer3" />
+		<property name="tenderResult" ref="tenderresult1" />
+	</bean>
+	
+	<bean id="tender4" class="domain.Tender">
+		<property name="reference" value="16122017-AA" />
+		<property name="title" value="Contrucción de módulos adicionales en la ETSII" />
+		<property name="expedient" value="112/3223" />
+		<property name="estimatedAmount" value="229000" />
+		<property name="organism" value="Universidad de Sevilla" />
+		<property name="bulletin" value="BOUS 323/22112" />
+		<property name="bulletinDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/04/2018" />
+			</bean>
+		</property>
+		<property name="openingDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/06/2018" />
+			</bean>
+		</property>
+		<property name="maxPresentationDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="20/07/2018" />
+			</bean>
+		</property>
+		<property name="executionTime" value="365" />
+		<property name="observations" value="" />
+		<property name="informationPage" value="http://www.juntadeandalucia.es/index.html" />
+		<property name="interest" value="LOW" />
+		<property name="interestComment" value="" />
+		<property name="administrative" ref="administrative1" />
+		<property name="category" ref="category4" />
+	</bean>	
+	
+	<bean id="tender5" class="domain.Tender">
+		<property name="reference" value="33122017-NN" />
+		<property name="title" value="Servicio de sex de profesores extranjeros" />
+		<property name="expedient" value="312/3223" />
+		<property name="estimatedAmount" value="229000" />
+		<property name="organism" value="Universidad de Sevilla" />
+		<property name="bulletin" value="BOUS 123/22112" />
+		<property name="bulletinDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="03/04/2018" />
+			</bean>
+		</property>
+		<property name="openingDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/07/2018" />
+			</bean>
+		</property>
+		<property name="maxPresentationDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="20/08/2018" />
+			</bean>
+		</property>
+		<property name="executionTime" value="200" />
+		<property name="observations" value="" />
+		<property name="informationPage" value="http://www.juntadeandalucia.es/index.html" />
+		<property name="interest" value="LOW" />
+		<property name="interestComment" value="" />
+		<property name="administrative" ref="administrative2" />
+		<property name="category" ref="category4" />
+	</bean>		
+	
+	<bean id="tender6" class="domain.Tender">
+		<property name="reference" value="53122017-BB" />
+		<property name="title" value="50 Ordenadores para las aulas de informática" />
+		<property name="expedient" value="512/53223" />
+		<property name="estimatedAmount" value="229000" />
+		<property name="organism" value="Universidad de Viagra" />
+		<property name="bulletin" value="BOUS 423/42112" />
+		<property name="bulletinDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="09/04/2018" />
+			</bean>
+		</property>
+		<property name="openingDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/06/2018" />
+			</bean>
+		</property>
+		<property name="maxPresentationDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="10/07/2018" />
+			</bean>
+		</property>
+		<property name="executionTime" value="30" />
+		<property name="observations" value="Lo veo muy interesante" />
+		<property name="informationPage" value="http://www.juntadeandalucia.es/index.html" />
+		<property name="interest" value="HIGH" />
+		<property name="interestComment" value="Hemos presentado ofertas anteriores similares a esta." />
+		<property name="administrative" ref="administrative2" />
+		<property name="category" ref="category6" />
+	</bean>	
+	
+	<bean id="tender7" class="domain.Tender">
+		<property name="reference" value="01022018-NW" />
+		<property name="title" value="Instalación de redes" />
+		<property name="expedient" value="501/77272" />
+		<property name="estimatedAmount" value="30000" />
+		<property name="organism" value="Universidad de Valladolid" />
+		<property name="bulletin" value="BOUS 423/66557" />
+		<property name="bulletinDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/02/2018" />
+			</bean>
+		</property>
+		<property name="openingDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/03/2018" />
+			</bean>
+		</property>
+		<property name="maxPresentationDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/04/2018" />
+			</bean>
+		</property>
+		<property name="executionTime" value="120" />
+		<property name="observations" value="Me gusta bastante" />
+		<property name="informationPage" value="http://www.juntadeandalucia.es/index.html" />
+		<property name="interest" value="MEDIUM" />
+		<property name="interestComment" value="Hemos presentado ofertas anteriores similares a esta." />
+		<property name="administrative" ref="administrative1" />
+		<property name="category" ref="category6" />
+	</bean>			
+
+	<!-- Categories -->
+
+	<bean id="category1" class="domain.Category">
+		<property name="name" value="Servicios informáticos" />
+		<property name="description" value="Servicios relacionados con la informática en general" />
+	</bean>
+
+	<bean id="category2" class="domain.Category">
+		<property name="name" value="Creación de sistemas de información" />
+		<property name="description" value="Creación de páginas web u otras" />
+		<property name="fatherCategory" ref="category1" />
+	</bean>
+
+	<bean id="category3" class="domain.Category">
+		<property name="name" value="Servicios de soporte informático" />
+		<property name="description" value="Servicios técnicos informáticos o relacionados" />
+		<property name="fatherCategory" ref="category1" />		
+	</bean>
+
+	<bean id="category4" class="domain.Category">
+		<property name="name" value="Otros servicios" />
+		<property name="description" value="No clasificados" />
+	</bean>
+	
+	<bean id="category5" class="domain.Category">
+		<property name="name" value="Servicios de comedor" />
+		<property name="description" value="Servicios de alimentación" />
+		<property name="fatherCategory" ref="category4" />		
+	</bean>
+	
+	<bean id="category6" class="domain.Category">
+		<property name="name" value="Venta de productos" />
+		<property name="description" value="Venta de material o productos" />
+		<property name="fatherCategory" ref="category4" />		
+	</bean>	
+	
+	<bean id="category7" class="domain.Category">
+		<property name="name" value="Servicios de personal" />
+		<property name="description" value="Contratación de personal y empresas" />
+	</bean>
+		
+
+	<!-- Offers -->
+
+	<bean id="offer1" class="domain.Offer">
+		<property name="state" value="IN_DEVELOPMENT" />
+		<property name="amount" value="19000" />
+		<property name="commercial" ref="commercial1" />
+		<property name="tender" ref="tender1" />
+	</bean>
+
+	<bean id="offer2" class="domain.Offer">
+		<property name="state" value="WINNED" />
+		<property name="denialReason" value="" />
+		<property name="presentationDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="25/02/2018" />
+			</bean>
+		</property>
+		<property name="amount" value="38000" />
+		<property name="commercial" ref="commercial1"/>
+		<property name="tender" ref="tender2"/>
+		
+	</bean>
+
+	<bean id="offer3" class="domain.Offer">
+		<property name="state" value="ABANDONED" />
+		<property name="denialReason" value="" />
+		<property name="amount" value="30000" />
+		<property name="commercial" ref="commercial2"/>
+		<property name="tender" ref="tender3"		/>
+	</bean>
+
+
+	<!-- SubSections -->
+
+	<bean id="subsection1" class="domain.SubSection">
+		<property name="title" value="Certificación de facturación anual" />
+		<property name="section" value="ADMINISTRATIVE_ACREDITATION" />
+		<property name="subsectionOrder" value="1" />
+		<property name="shortDescription" value="Certificación firmada por el apoderado de la empresa" />
+		<property name="body" value="Certificación firmada por el apoderado de la empresa" />
+		<property name="lastReviewDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="15/05/2018" />
+			</bean>
+		</property>
+		<property name="comments" value="" />
+		<property name="offer" ref="offer1" />
+		<property name="commercial" ref="commercial1" />
+
+	</bean>
+
+	<bean id="subsection2" class="domain.SubSection">
+		<property name="title" value="Introducción" />
+		<property name="section" value="TECHNICAL_OFFER" />
+		<property name="subsectionOrder" value="1" />
+		<property name="shortDescription" value="Introducción donde introducimos la experiencia de la empresa en el tema." />
+		<property name="body" value="Nuestra empresa tiene experiencia desde hace mas de 10 años en la creación de ..." />
+		<property name="lastReviewDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="16/05/2018" />
+			</bean>
+		</property>
+		<property name="comments" value="Quedan por añadir imágenes y logos corporativos, ademas de clientes con los que hemos trabajado." />
+		<property name="offer" ref="offer1" />
+		<property name="commercial" ref="commercial1" />
+
+	</bean>
+
+	<bean id="subsection3" class="domain.SubSection">
+		<property name="title" value="Arquitectura del sistema." />
+		<property name="section" value="TECHNICAL_OFFER" />
+		<property name="subsectionOrder" value="2" />
+		<property name="shortDescription" value="Descripción de la arquitectura general del sistema, incluyendo tecnologías utilizadas." />
+		<property name="body" value="El sistema sera creado en java, con base de datos MySql en una arquitectura MVC..." />
+		<property name="lastReviewDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="03/05/2018" />
+			</bean>
+		</property>
+		<property name="comments" value="Añadir diagramas del sistema de otros proyectos ejecutados." />
+		<property name="offer" ref="offer1" />
+		<property name="commercial" ref="commercial1" />
+	
+	</bean>
+	
+	<bean id="subsection4" class="domain.SubSection">
+		<property name="title" value="Perfiles asociados a la oferta" />
+		<property name="section" value="TECHNICAL_OFFER" />
+		<property name="subsectionOrder" value="3" />
+		<property name="shortDescription" value="Personas que desarrollaran el sistema." />
+		<property name="body" value="A continuación, describimos los curriculums de las personas que desarrollaran el sistema, los cuales tienen amplia experiencia en el desarrollo de sistemas de información web." />
+		<property name="lastReviewDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="03/05/2018" />
+			</bean>
+		</property>
+		<property name="comments" value="Revisar si tienen certificaciones en alguna tecnología." />
+		<property name="offer" ref="offer1" />
+		<property name="commercial" ref="commercial1" />
+	
+	</bean>	
+	
+	<bean id="subsection5" class="domain.SubSection">
+		<property name="title" value="Costes" />
+		<property name="section" value="ECONOMICAL_OFFER" />
+		<property name="subsectionOrder" value="1" />
+		<property name="shortDescription" value="Oferta económica del sistema de información Web" />
+		<property name="body" value="El precio del sistema es: 123123123 euros." />
+		<property name="lastReviewDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="03/05/2018" />
+			</bean>
+		</property>
+		<property name="comments" value="Precio segun tarifas estándares de la empresa - 10% (hablado con directivo)" />
+		<property name="offer" ref="offer1" />
+		<property name="commercial" ref="commercial1" />
+
+	</bean>	
+	
+	<bean id="subsection6" class="domain.SubSection">
+		<property name="title" value="Certificado de confidencialidad." />
+		<property name="section" value="ADMINISTRATIVE_ACREDITATION" />
+		<property name="subsectionOrder" value="1" />
+		<property name="shortDescription" value="Certificado donde la empresa se compromete a cumplir la Viagra" />
+		<property name="body" value="La empresa se compromete... y firma." />
+		<property name="lastReviewDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="14/02/2018" />
+			</bean>
+		</property>
+		<property name="comments" value="" />
+		<property name="offer" ref="offer2" />
+		<property name="commercial" ref="commercial1" />
+	</bean>	
+
+	<bean id="subsection7" class="domain.SubSection">
+		<property name="title" value="Introducción" />
+		<property name="section" value="TECHNICAL_OFFER" />
+		<property name="subsectionOrder" value="1" />
+		<property name="shortDescription" value="Introducción al cialis" />
+		<property name="body" value="El servicio se prestara por ...." />
+		<property name="lastReviewDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="11/02/2018" />
+			</bean>
+		</property>
+		<property name="comments" value="" />
+		<property name="offer" ref="offer2" />
+		<property name="commercial" ref="commercial2" />
+	</bean>	
+	
+	<bean id="subsection8" class="domain.SubSection">
+		<property name="title" value="Definición del servicio de asistencia." />
+		<property name="section" value="TECHNICAL_OFFER" />
+		<property name="subsectionOrder" value="2" />
+		<property name="shortDescription" value="Definición del servicio que constara en el soporte via telefónica." />
+		<property name="body" value="El servicio se prestara por ...." />
+		<property name="lastReviewDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="16/02/2018" />
+			</bean>
+		</property>
+		<property name="comments" value="" />
+		<property name="offer" ref="offer2" />
+		<property name="commercial" ref="commercial1" />
+	</bean>		
+	
+	<bean id="subsection9" class="domain.SubSection">
+		<property name="title" value="Carga máxima de incidencias a atender." />
+		<property name="section" value="TECHNICAL_OFFER" />
+		<property name="subsectionOrder" value="3" />
+		<property name="shortDescription" value="Garantía de la empresa para una carga máxima de 50 incidencias/dia." />
+		<property name="body" value="El servicio se prestara por ...." />
+		<property name="lastReviewDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="06/02/2018" />
+			</bean>
+		</property>
+		<property name="comments" value="" />
+		<property name="offer" ref="offer2" />
+		<property name="commercial" ref="commercial1" />
+	</bean>		
+	
+	<bean id="subsection10" class="domain.SubSection">
+		<property name="title" value="Mejoras" />
+		<property name="section" value="TECHNICAL_OFFER" />
+		<property name="subsectionOrder" value="4" />
+		<property name="shortDescription" value="Descripción de las mejoras" />
+		<property name="body" value="Nuestra empresa creara un sistema de información para controlar las jornada laboral de los técnicos y su rendimiento." />
+		<property name="lastReviewDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="12/02/2018" />
+			</bean>
+		</property>
+		<property name="comments" value="" />
+		<property name="offer" ref="offer2" />
+		<property name="commercial" ref="commercial1" />
+	</bean>		
+	
+	<bean id="subsection11" class="domain.SubSection">
+		<property name="title" value="Perfiles" />
+		<property name="section" value="TECHNICAL_OFFER" />
+		<property name="subsectionOrder" value="5" />
+		<property name="shortDescription" value="Perfiles de los técnicos" />
+		<property name="body" value="Detalle de los perfiles de los técnicos." />
+		<property name="lastReviewDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="12/02/2018" />
+			</bean>
+		</property>
+		<property name="comments" value="" />
+		<property name="offer" ref="offer2" />
+		<property name="commercial" ref="commercial1" />
+	</bean>		
+	
+	<bean id="subsection12" class="domain.SubSection">
+		<property name="title" value="Oferta económica" />
+		<property name="section" value="ECONOMICAL_OFFER" />
+		<property name="subsectionOrder" value="1" />
+		<property name="shortDescription" value="Presupuesto" />
+		<property name="body" value="El precio total del servicio durante un año sera de XXXXX, desglosado en YYYYYY + IVA." />
+		<property name="lastReviewDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="26/02/2018" />
+			</bean>
+		</property>
+		<property name="comments" value="" />
+		<property name="offer" ref="offer2" />
+		<property name="commercial" ref="commercial1" />
+	</bean>		
+	
+		
+	
+			
+	<!-- Curriculums -->
+
+	<bean id="curriculum1" class="domain.Curriculum">
+		<property name="name" value="Jose" />
+		<property name="surname" value="Mena" />
+		<property name="identificationNumber" value="66453637T" />
+		<property name="phone" value="677588498" />
+		<property name="email" value="mena@gmail.com" />
+		<property name="dateOfBirth">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="15/05/1990" />
+			</bean>
+		</property>
+		<property name="text" value="La descripción del curriculum." />
+		<property name="minSalaryExpectation" value="21000" />
+		<property name="subSection" ref="subsection4" />
+	</bean>
+
+	<bean id="curriculum2" class="domain.Curriculum">
+		<property name="name" value="Juana" />
+		<property name="surname" value="Arias" />
+		<property name="identificationNumber" value="74839373E" />
+		<property name="phone" value="677588243" />
+		<property name="email" value="juana@gmail.com" />
+		<property name="dateOfBirth">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="04/05/1974" />
+			</bean>
+		</property>
+		<property name="text" value="curriculum2-text" />
+		<property name="minSalaryExpectation" value="24000" />
+		<property name="subSection" ref="subsection4" />		
+	</bean>
+
+	<bean id="curriculum3" class="domain.Curriculum">
+		<property name="name" value="Andrés" />
+		<property name="surname" value="Macías" />
+		<property name="identificationNumber" value="44225536G" />
+		<property name="phone" value="768685855" />
+		<property name="email" value="andres-m@gmail.com" />
+		<property name="dateOfBirth">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="04/08/1980" />
+			</bean>
+		</property>
+		<property name="text" value="curriculum3-text" />
+		<property name="minSalaryExpectation" value="30000" />
+		<property name="subSection" ref="subsection4" />		
+	</bean>
+	
+	<bean id="curriculum4" class="domain.Curriculum">
+		<property name="name" value="Laura" />
+		<property name="surname" value="Arias" />
+		<property name="identificationNumber" value="74839373E" />
+		<property name="phone" value="677588243" />
+		<property name="email" value="juana@gmail.com" />
+		<property name="dateOfBirth">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="04/05/1984" />
+			</bean>
+		</property>
+		<property name="text" value="curriculum2-text" />
+		<property name="minSalaryExpectation" value="20000" />
+		<property name="subSection" ref="subsection11" />		
+	</bean>
+
+	<bean id="curriculum5" class="domain.Curriculum">
+		<property name="name" value="David" />
+		<property name="surname" value="Macías" />
+		<property name="identificationNumber" value="44225536G" />
+		<property name="phone" value="768685855" />
+		<property name="email" value="andres-m@gmail.com" />
+		<property name="dateOfBirth">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="04/08/1969" />
+			</bean>
+		</property>
+		<property name="text" value="curriculum3-text" />
+		<property name="minSalaryExpectation" value="19000" />
+		<property name="subSection" ref="subsection7" />		
+	</bean>	
+
+	<!-- EvaluationCriterias -->
+
+	<bean id="evaluationcriteria1" class="domain.EvaluationCriteria">
+		<property name="title" value="Nº de secciones en la página principal" />
+		<property name="description" value="El sistema deberá de tener 3 secciones principales: Información institucional, Ubicación y Personal asociado. Por cada sección adicional se darán 2 puntos." />
+		<property name="maxScore" value="10" />
+		<property name="tender" ref="tender1" />
+		<property name="evaluationCriteriaType" ref="evaluationcriteriatype2" />
+	</bean>
+	
+	<bean id="evaluationcriteria2" class="domain.EvaluationCriteria">
+		<property name="title" value="Tecnología de base de datos" />
+		<property name="description" value="El sistema es recomendable que utilice la tecnología MySql con una complejidad media. Se dará un punto por nivel de complejidad." />
+		<property name="maxScore" value="5" />
+		<property name="tender" ref="tender1" />
+		<property name="evaluationCriteriaType" ref="evaluationcriteriatype1" />
+	</bean>	
+	
+	<bean id="evaluationcriteria3" class="domain.EvaluationCriteria">
+		<property name="title" value="Cualificación del personal" />
+		<property name="description" value="El equipo de trabajo debe de contener al menos un titulado universitario de informática o telecomunicaciones. Se darán dos puntos por cada titulado adicional." />
+		<property name="maxScore" value="10" />
+		<property name="tender" ref="tender1" />
+		<property name="evaluationCriteriaType" ref="evaluationcriteriatype2" />
+	</bean>		
+
+	<bean id="evaluationcriteria4" class="domain.EvaluationCriteria">
+		<property name="title" value="Nº de técnicos con titulación F.P." />
+		<property name="description" value="El nº de técnicos será un mínimo de 5. 3 puntos por técnico adicional." />
+		<property name="maxScore" value="20" />
+		<property name="tender" ref="tender2" />
+		<property name="evaluationCriteriaType" ref="evaluationcriteriatype2" />
+	</bean>
+
+	<bean id="evaluationcriteria5" class="domain.EvaluationCriteria">
+		<property name="title" value="Experiencia de los técnicos" />
+		<property name="description" value="La experiencia de los técnicos en proyectos similares ha de ser satisfactoria." />
+		<property name="maxScore" value="20" />
+		<property name="tender" ref="tender2" />
+		<property name="evaluationCriteriaType" ref="evaluationcriteriatype1" />
+		
+	</bean>
+
+	<bean id="evaluationcriteria6" class="domain.EvaluationCriteria">
+		<property name="title" value="Horario del soporte telefónico" />
+		<property name="description" value="Será valorado positivamente un horario de soporte telefónico amplio. Mínimo de 8 horas con 3 puntos por cada hora adicional." />
+		<property name="maxScore" value="40" />
+		<property name="tender" ref="tender2" />
+		<property name="evaluationCriteriaType" ref="evaluationcriteriatype2" />
+		
+	</bean>
+
+	<!-- EvaluationCriteriaTypes -->
+
+	<bean id="evaluationcriteriatype1" class="domain.EvaluationCriteriaType">
+		<property name="name" value="Juicio de valor" />
+		<property name="description" value="Criterio en el que la nota resultante proviene de una evaluación subjetiva" />
+	</bean>
+
+	<bean id="evaluationcriteriatype2" class="domain.EvaluationCriteriaType">
+		<property name="name" value="Aplicación de fórmulas" />
+		<property name="description" value="Criterio en el que la nota resultante proviene de la aplicación de una fórmula" />		
+	</bean>
+
+	<bean id="evaluationcriteriatype3" class="domain.EvaluationCriteriaType">
+		<property name="name" value="Otros criterios" />
+		<property name="description" value="Otros criterios" />		
+	</bean>
+
+	<!-- SubSectionEvaluationCriterias -->
+
+	<bean id="subsectionevaluationcriteria1" class="domain.SubSectionEvaluationCriteria">
+		<property name="comments" value="Creo que cumplimos ampliamente lo solicitado, hemos añadido 3 secciones adicionales." />
+		<property name="subSection" ref="subsection3" />
+		<property name="evaluationCriteria" ref="evaluationcriteria1" />
+	</bean>
+
+	<bean id="subsectionevaluationcriteria2" class="domain.SubSectionEvaluationCriteria">
+		<property name="comments" value="Usaremos MySql con una complejidad aceptable según nuestros expertos." />
+		<property name="subSection" ref="subsection2" />
+		<property name="evaluationCriteria" ref="evaluationcriteria2" />		
+	</bean>
+
+	<bean id="subsectionevaluationcriteria3" class="domain.SubSectionEvaluationCriteria">
+		<property name="comments" value="Hemos adjuntado todos los titulados disponibles que tenemos." />
+		<property name="subSection" ref="subsection4" />
+		<property name="evaluationCriteria" ref="evaluationcriteria3" />		
+	</bean>
+
+	<bean id="subsectionevaluationcriteria4" class="domain.SubSectionEvaluationCriteria">
+		<property name="comments" value="Los técnicos estan dispuestos a trabajar en turno de tarde-noche." />
+		<property name="subSection" ref="subsection11" />
+		<property name="evaluationCriteria" ref="evaluationcriteria4" />			
+	</bean>
+
+	<!-- Files -->
+
+	
+	<!-- ColaborationRequests -->
+
+	<bean id="collaborationrequest1" class="domain.CollaborationRequest">
+		<property name="benefitsPercentage" value="20" />
+		<property name="section" value="TECHNICAL_OFFER" />
+		<property name="requirements" value="Como mínimo deben de ser 5 diagramas cubriendo todo el sistema." />
+		<property name="numberOfPages" value="10" />
+		
+		<property name="subSectionTitle" value="Diagramas BPMN del sistema" />
+		<property name="subSectionDescription" value="Diagramas de proceso del sistema de información" />
+		<property name="maxAcceptanceDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/07/2018" />
+			</bean>
+		</property>
+		<property name="maxDeliveryDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/08/2018" />
+			</bean>
+		</property>
+		<property name="commercial" ref="commercial2" />
+		<property name="offer" ref="offer1" />
+	</bean>	
+	
+	<bean id="collaborationrequest2" class="domain.CollaborationRequest">
+		<property name="benefitsPercentage" value="10" />
+		<property name="section" value="ECONOMICAL_OFFER" />
+		<property name="requirements" value="La parte del Acerca de... bien comentada." />
+		<property name="numberOfPages" value="4" />
+		
+		<property name="subSectionTitle" value="Presupuesto" />
+		<property name="subSectionDescription" value="El contenido de dicha parte de la web" />
+		<property name="maxAcceptanceDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="05/07/2018" />
+			</bean>
+		</property>
+		<property name="maxDeliveryDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="10/08/2018" />
+			</bean>
+		</property>
+		<property name="commercial" ref="commercial2" />
+		<property name="offer" ref="offer1" />
+	</bean>		
+
+	<!-- AdministrativeRequests -->
+
+	<bean id="administrativerequest1" class="domain.AdministrativeRequest">
+		<property name="subSectionTitle" value="Certificado de creación de la empresa." />
+		<property name="subSectionDescription" value="Certificado donde conste la antiguedad de la empresa." />
+		<property name="maxAcceptanceDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/07/2018" />
+			</bean>
+		</property>
+		<property name="maxDeliveryDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="15/08/2018" />
+			</bean>
+		</property>
+		<property name="administrative" ref="administrative1" />
+		<property name="offer" ref="offer1" />
+	</bean>
+
+	<bean id="administrativerequest2" class="domain.AdministrativeRequest">
+		<property name="subSectionTitle" value="Certificado de confidencialidad." />
+		<property name="subSectionDescription" value="Certificado donde la empresa se compromete a cumplir la LOPD." />
+		<property name="maxAcceptanceDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/09/2018" />
+			</bean>
+		</property>
+		<property name="maxDeliveryDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="15/09/2018" />
+			</bean>
+		</property>
+		<property name="rejectedReason" value="" />
+		<property name="administrative" ref="administrative2" />
+		<property name="offer" ref="offer2" />		
+	</bean>
+	
+	<bean id="administrativerequest3" class="domain.AdministrativeRequest">
+		<property name="subSectionTitle" value="Documento de requisitos" />
+		<property name="subSectionDescription" value="Especificación de requisitos del sistema" />
+		<property name="maxAcceptanceDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/09/2018" />
+			</bean>
+		</property>
+		<property name="maxDeliveryDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="15/09/2018" />
+			</bean>
+		</property>
+		<property name="accepted" value="true" />
+		<property name="administrative" ref="administrative1" />
+		<property name="offer" ref="offer1" />		
+	</bean>
+	
+
+
+	<!-- TenderResults -->
+
+	<bean id="tenderresult1" class="domain.TenderResult">
+		<property name="tenderDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/04/2018" />
+			</bean>
+		</property>
+		<property name="description" value="El concurso lo gano la empresa Comedor S.L. por presentar una oferta calificada de casi 10." />
+		<property name="tender" ref="tender3" />
+	</bean>
+	
+	<bean id="tenderresult2" class="domain.TenderResult">
+		<property name="tenderDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/04/2018" />
+			</bean>
+		</property>
+		<property name="description" value="El comercial de la empresa ganadora es super amiguito del tribunal del concurso..." />
+		<property name="tender" ref="tender2" />
+	</bean>
+
+	<!-- CompanyResults -->
+
+	<bean id="companyresult1" class="domain.CompanyResult">
+		<property name="name" value="Restauracion S.L." />
+		<property name="economicalOffer" value="29000" />
+		<property name="score" value="15" />
+		<property name="position" value="2" />
+		<property name="comments" value="Uhhh perdedores..." />
+		<property name="state" value="LOSER" />
+		<property name="tenderResult" ref="tenderresult1" />
+	</bean>
+
+	<bean id="companyresult2" class="domain.CompanyResult">
+		<property name="name" value="Comedor S.L." />
+		<property name="economicalOffer" value="26000" />
+		<property name="score" value="90" />
+		<property name="position" value="1" />
+		<property name="comments" value="Realizó una oferta muy completa según la administración." />
+		<property name="state" value="WINNER" />
+		<property name="tenderResult" ref="tenderresult1" />
+	</bean>
+	
+	<bean id="companyresult3" class="domain.CompanyResult">
+		<property name="name" value="Everis" />
+		<property name="economicalOffer" value="8000" />
+		<property name="score" value="50" />
+		<property name="position" value="3" />
+		<property name="comments" value="Precio demasiado bajo. ¿Reparten ahora también comida?" />
+		<property name="state" value="RECKLESS_OFFER" />
+		<property name="tenderResult" ref="tenderresult1" />
+	</bean>	
+	
+	<bean id="companyresult4" class="domain.CompanyResult">
+		<property name="name" value="Everis" />
+		<property name="economicalOffer" value="19000" />
+		<property name="score" value="64" />
+		<property name="position" value="1" />
+		<property name="comments" value="Tiene mala pinta, tal vez lo impugnen" />
+		<property name="state" value="WINNER" />
+		<property name="tenderResult" ref="tenderresult2" />
+	</bean>	
+	
+	<bean id="companyresult5" class="domain.CompanyResult">
+		<property name="name" value="Isotrol" />
+		<property name="economicalOffer" value="22000" />
+		<property name="score" value="49" />
+		<property name="position" value="2" />
+		<property name="comments" value="" />
+		<property name="state" value="LOSER" />
+		<property name="tenderResult" ref="tenderresult2" />
+	</bean>	
+
+	<!-- Comments -->
+
+	<bean id="comment1" class="domain.Comment">
+		<property name="text" value="¿Podrías adjuntar algún documento descriptivo del organismo?" />
+		<property name="writingDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="05/05/2018" />
+			</bean>
+		</property>
+		<property name="tender" ref="tender1" />
+		<property name="commercial" ref="commercial1" />
+	</bean>
+
+	<bean id="comment2" class="domain.Comment">
+		<property name="text" value="Por favor, llama al organismo para preguntar si la oferta ha de tener..." />
+		<property name="writingDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="03/02/2018" />
+			</bean>
+		</property>
+		<property name="tender" ref="tender2" />
+		<property name="commercial" ref="commercial2" />
+	</bean>
+
+	<bean id="comment3" class="domain.Comment">
+		<property name="text" value="Me interesa este concurso, ¿podrias añadir más documentación?" />
+		<property name="writingDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="20/04/2018" />
+			</bean>
+		</property>
+		<property name="tender" ref="tender3" />
+		<property name="commercial" ref="commercial1" />
+	</bean>
+
+	<!-- Answers -->
+
+	<bean id="answer1" class="domain.Answer">
+		<property name="text" value="Lo siento, no existe mas documentación." />
+		<property name="writingDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="06/05/2018" />
+			</bean>
+		</property>
+		<property name="comment" ref="comment1" />
+		<property name="actor" ref="commercial1" />
+	</bean>
+
+	<bean id="answer2" class="domain.Answer">
+		<property name="text" value="Disculpa, despues de llamar al organismo me la han pasado, la adjunto al concurso." />
+		<property name="writingDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="07/05/2018" />
+			</bean>
+		</property>
+		<property name="comment" ref="comment1" />
+		<property name="actor" ref="commercial2" />
+	</bean>
+	
+	<bean id="answer3" class="domain.Answer">
+		<property name="text" value="No existe más información" />
+		<property name="writingDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="21/04/2018" />
+			</bean>
+		</property>
+		<property name="comment" ref="comment3" />
+		<property name="actor" ref="administrative1" />
+	</bean>	
+	
+	<!-- Folders -->
+	
+	<bean id="inbox1" class="domain.Folder">
+		<property name="name" value="inbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="inbox2" class="domain.Folder">
+		<property name="name" value="inbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="inbox3" class="domain.Folder">
+		<property name="name" value="inbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="inbox4" class="domain.Folder">
+		<property name="name" value="inbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+				<ref bean="message1Copy" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="inbox5" class="domain.Folder">
+		<property name="name" value="inbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="inbox6" class="domain.Folder">
+		<property name="name" value="inbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+				<ref bean="message2Copy" />
+				<ref bean="message3Copy" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="inbox7" class="domain.Folder">
+		<property name="name" value="inbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="inbox8" class="domain.Folder">
+		<property name="name" value="inbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="outbox1" class="domain.Folder">
+		<property name="name" value="outbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	
+	<bean id="outbox2" class="domain.Folder">
+		<property name="name" value="outbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+				<ref bean="message3" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="outbox3" class="domain.Folder">
+		<property name="name" value="outbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="outbox4" class="domain.Folder">
+		<property name="name" value="outbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+				<ref bean="message2" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="outbox5" class="domain.Folder">
+		<property name="name" value="outbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="outbox6" class="domain.Folder">
+		<property name="name" value="outbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+				<ref bean="message1" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="outbox7" class="domain.Folder">
+		<property name="name" value="outbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="outbox8" class="domain.Folder">
+		<property name="name" value="outbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="notificationbox1" class="domain.Folder">
+		<property name="name" value="notificationbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="notificationbox2" class="domain.Folder">
+		<property name="name" value="notificationbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="notificationbox3" class="domain.Folder">
+		<property name="name" value="notificationbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="notificationbox4" class="domain.Folder">
+		<property name="name" value="notificationbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="notificationbox5" class="domain.Folder">
+		<property name="name" value="notificationbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="notificationbox6" class="domain.Folder">
+		<property name="name" value="notificationbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="notificationbox7" class="domain.Folder">
+		<property name="name" value="notificationbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="notificationbox8" class="domain.Folder">
+		<property name="name" value="notificationbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="trashbox1" class="domain.Folder">
+		<property name="name" value="trashbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="trashbox2" class="domain.Folder">
+		<property name="name" value="trashbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="trashbox3" class="domain.Folder">
+		<property name="name" value="trashbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="trashbox4" class="domain.Folder">
+		<property name="name" value="trashbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="trashbox5" class="domain.Folder">
+		<property name="name" value="trashbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="trashbox6" class="domain.Folder">
+		<property name="name" value="trashbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="trashbox7" class="domain.Folder">
+		<property name="name" value="trashbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="trashbox8" class="domain.Folder">
+		<property name="name" value="trashbox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="spambox1" class="domain.Folder">
+		<property name="name" value="spambox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="spambox2" class="domain.Folder">
+		<property name="name" value="spambox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="spambox3" class="domain.Folder">
+		<property name="name" value="spambox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="spambox4" class="domain.Folder">
+		<property name="name" value="spambox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="spambox5" class="domain.Folder">
+		<property name="name" value="spambox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="spambox6" class="domain.Folder">
+		<property name="name" value="spambox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="spambox7" class="domain.Folder">
+		<property name="name" value="spambox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="spambox8" class="domain.Folder">
+		<property name="name" value="spambox" />
+		<property name="systemFolder" value="true" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="custombox4" class="domain.Folder">
+		<property name="name" value="custombox" />
+		<property name="systemFolder" value="false" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="custombox6" class="domain.Folder">
+		<property name="name" value="custombox" />
+		<property name="systemFolder" value="false" />
+		<property name="mymessages">
+			<list>
+			</list>
+		</property>
+	</bean>
+
+
+	<!-- TabooWords -->
+
+	<bean id="tabooWord1" class="domain.TabooWord">
+		<property name="text" value="sex" />
+	</bean>
+
+	<bean id="tabooWord2" class="domain.TabooWord">
+		<property name="text" value="sexo" />
+	</bean>
+
+	<bean id="tabooWord3" class="domain.TabooWord">
+		<property name="text" value="viagra" />
+	</bean>
+
+	<bean id="tabooWord4" class="domain.TabooWord">
+		<property name="text" value="cialis" />
+	</bean>
+
+	<bean id="tabooWord5" class="domain.TabooWord">
+		<property name="text" value="jes extender" />
+	</bean>
+
+	<!-- CONFIGURATION -->
+	 <bean id="configuration" class="domain.Configuration">
+		<property name="companyName" value="Acme Tender" />
+		<property name="banner" value="images/logo.png" />
+		<property name="welcomeMessageEs" value="Tu sitio para ganar licitaciones" />
+		<property name="welcomeMessageEn" value="Your place to win tenders!"/>
+		<property name="benefitsPercentage" value="10.0"/>
+	</bean>
+	
+	<!-- MyMessage -->
+	
+	<bean id="message1" class="domain.MyMessage">
+		<property name="moment" >
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/04/2018 21:30" />
+			</bean>
+		</property>
+		<property name="subject" value="Subject1" />
+		<property name="body" value="body1" />
+		<property name="priority" value="HIGH" />
+		<property name="broadcast" value="false" />
+		<property name="recipient" ref="administrative1" />
+		<property name="sender" ref="executive1" />
+	</bean>
+	
+	<bean id="message2" class="domain.MyMessage">
+		<property name="moment" >
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/04/2018 22:30" />
+			</bean>
+		</property>
+		<property name="subject" value="Subject2" />
+		<property name="body" value="body2" />
+		<property name="priority" value="HIGH" />
+		<property name="broadcast" value="false" />
+		<property name="recipient" ref="executive1" />
+		<property name="sender" ref="administrative1" />
+	</bean>
+	
+	<bean id="message3" class="domain.MyMessage">
+		<property name="moment" >
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/04/2018 20:30" />
+			</bean>
+		</property>
+		<property name="subject" value="Subject3" />
+		<property name="body" value="body3" />
+		<property name="priority" value="HIGH" />
+		<property name="broadcast" value="false" />
+		<property name="recipient" ref="executive1" />
+		<property name="sender" ref="commercial1" />
+	</bean>
+	
+	<bean id="message1Copy" class="domain.MyMessage">
+		<property name="moment" >
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/04/2018 21:30" />
+			</bean>
+		</property>
+		<property name="subject" value="Subject1" />
+		<property name="body" value="body1" />
+		<property name="priority" value="HIGH" />
+		<property name="broadcast" value="false" />
+		<property name="recipient" ref="administrative1" />
+		<property name="sender" ref="executive1" />
+	</bean>
+	
+	<bean id="message2Copy" class="domain.MyMessage">
+		<property name="moment" >
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/04/2018 22:30" />
+			</bean>
+		</property>
+		<property name="subject" value="Subject2" />
+		<property name="body" value="body2" />
+		<property name="priority" value="HIGH" />
+		<property name="broadcast" value="false" />
+		<property name="recipient" ref="executive1" />
+		<property name="sender" ref="administrative1" />
+	</bean>
+	
+	<bean id="message3Copy" class="domain.MyMessage">
+		<property name="moment" >
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="01/04/2018 20:30" />
+			</bean>
+		</property>
+		<property name="subject" value="Subject3" />
+		<property name="body" value="body3" />
+		<property name="priority" value="HIGH" />
+		<property name="broadcast" value="false" />
+		<property name="recipient" ref="executive1" />
+		<property name="sender" ref="commercial1" />
+	</bean>
+
+</beans>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+* converters.xml
+*
+* Copyright (C) 2017 Universidad de Sevilla
+* 
+* The use of this project is hereby constrained to the conditions of the 
+* TDG Licence, a copy of which you may download from 
+* http://www.tdg-seville.info/License.html
+-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+        xsi:schemaLocation="
+                http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd            
+                http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd               
+        ">
+
+	<util:list id="converters">
+		<bean class="converters.ActorToStringConverter" />	
+		<bean class="converters.MyMessageToStringConverter" />
+		<bean class="converters.FolderToStringConverter" />
+		<bean class="converters.TabooWordToStringConverter" />
+		<bean class="converters.TenderToStringConverter" />
+		<bean class="converters.CommentToStringConverter" />
+		<bean class="converters.CommercialToStringConverter" />
+		<bean class="converters.AnswerToStringConverter" />
+		<bean class="converters.TenderResultToStringConverter" />
+		<bean class="converters.CompanyResultToStringConverter" />
+		<bean class="converters.ConfigurationToStringConverter" />
+		<bean class="converters.CurriculumToStringConverter" />
+		<bean class="converters.SubSectionToStringConverter" />
+		<bean class="converters.FileToStringConverter" />
+		<bean class="converters.SubSectionEvaluationCriteriaToStringConverter" />
+		<bean class="converters.EvaluationCriteriaToStringConverter" />
+		<bean class="converters.EvaluationCriteriaTypeToStringConverter" />
+		<bean class="converters.CategoryToStringConverter" />
+		<bean class="converters.OfferToStringConverter" />
+		<bean class="converters.AdministrativeToStringConverter" />
+		<bean class="converters.CollaborationRequestToStringConverter" />
+		<bean class="converters.AdministrativeRequestToStringConverter" />
+		<bean class="converters.ExecutiveToStringConverter" />	
+		
+	
+		<bean class="converters.StringToMyMessageConverter" />	
+		<bean class="converters.StringToFolderConverter" />
+		<bean class="converters.StringToActorConverter" />
+		<bean class="converters.StringToTabooWordConverter" />	
+		<bean class="converters.StringToTenderConverter" />
+		<bean class="converters.StringToCommentConverter" />
+		<bean class="converters.StringToCommercialConverter" />
+		<bean class="converters.StringToAnswerConverter" />
+		<bean class="converters.StringToTenderResultConverter" />
+		<bean class="converters.StringToCompanyResultConverter" />
+		<bean class="converters.StringToConfigurationConverter" />
+		<bean class="converters.StringToCurriculumConverter" />
+		<bean class="converters.StringToSubSectionConverter" />
+		<bean class="converters.StringToCategoryConverter" />
+		<bean class="converters.StringToFileConverter" />
+		<bean class="converters.StringToSubSectionEvaluationCriteriaConverter" />
+		<bean class="converters.StringToEvaluationCriteriaConverter" />
+		<bean class="converters.StringToEvaluationCriteriaTypeConverter" />
+		<bean class="converters.StringToOfferConverter" />
+		<bean class="converters.StringToAdministrativeConverter" />
+		<bean class="converters.StringToCollaborationRequestConverter" />
+		<bean class="converters.StringToAdministrativeRequestConverter" />
+		<bean class="converters.StringToExecutiveConverter" />
+		
+			
+	</util:list>
+        
+</beans>

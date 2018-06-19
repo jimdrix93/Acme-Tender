@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- * tiles_es.xml * Copyright (C) 2017 Universidad de Sevilla * Author 
+	(A) 2012 Rafael Corchuelo (corchu@us.es) * * The use of this project is hereby 
+	constrained to the conditions of the * TDG Licence, a copy of which you may 
+	download from * http://www.tdg-seville.info/License.html -->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="tender/display" extends="master.page">
+		<put-attribute name="title" value="Mostrar concurso" />
+		<put-attribute name="body" value="/views/tender/display.jsp" />
+	</definition>	
+
+	<definition name="tender/create" extends="master.page">
+		<put-attribute name="title" value="Crear concurso" />
+		<put-attribute name="body" value="/views/tender/edit.jsp" />
+	</definition>	
+
+	<definition name="tender/edit" extends="master.page">
+		<put-attribute name="title" value="Editar concurso" />
+		<put-attribute name="body" value="/views/tender/edit.jsp" />
+	</definition>
+
+	<definition name="tender/list" extends="master.page">
+		<put-attribute name="title" value="Listado de concursos" />
+		<put-attribute name="body" value="/views/tender/list.jsp" />
+	</definition>
+	
+	<definition name="tender/listOffertable" extends="master.page">
+		<put-attribute name="title" value="Listado de concursos ofertables" />
+		<put-attribute name="body" value="/views/tender/list.jsp" />
+	</definition>	
+	
+	<definition name="tender/administrative/list" extends="master.page">
+		<put-attribute name="title" value="Mis Concursos" />
+		<put-attribute name="body" value="/views/tender/list.jsp" />
+	</definition>
+	
+	<definition name="tender/search" extends="master.page">
+		<put-attribute name="title" value="Búsqueda de concursos" />
+		<put-attribute name="body" value="/views/tender/search.jsp" />
+	</definition>	
+	
+	<definition name="tender/searchResult" extends="master.page">
+		<put-attribute name="title" value="Resultado de la búsqueda" />
+		<put-attribute name="body" value="/views/tender/list.jsp" />
+	</definition>			
+	
+
+</tiles-definitions>

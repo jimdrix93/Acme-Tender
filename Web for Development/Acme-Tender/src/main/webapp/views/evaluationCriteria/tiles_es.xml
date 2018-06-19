@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- * tiles_es.xml * Copyright (C) 2017 Universidad de Sevilla * Author 
+	(A) 2012 Rafael Corchuelo (corchu@us.es) * * The use of this project is hereby 
+	constrained to the conditions of the * TDG Licence, a copy of which you may 
+	download from * http://www.tdg-seville.info/License.html -->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="evaluationCriteria/administrative/list" extends="master.page">
+		<put-attribute name="title" value="Listado de criterios de evaluación" />
+		<put-attribute name="body" value="/views/evaluationCriteria/list.jsp" />
+	</definition>
+	
+	<definition name="evaluationCriteria/display" extends="master.page">
+		<put-attribute name="title" value="Mostrar criterio de evaluación" />
+		<put-attribute name="body" value="/views/evaluationCriteria/display.jsp" />
+	</definition>	
+	
+
+	<definition name="evaluationCriteria/administrative/create" extends="master.page">
+		<put-attribute name="title" value="Crear criterio de evaluación" />
+		<put-attribute name="body" value="/views/evaluationCriteria/edit.jsp" />
+	</definition>
+	
+	<definition name="evaluationCriteria/administrative/edit" extends="master.page">
+		<put-attribute name="title" value="Editar criterio de evaluación" />
+		<put-attribute name="body" value="/views/evaluationCriteria/edit.jsp" />
+	</definition>	
+
+</tiles-definitions>
